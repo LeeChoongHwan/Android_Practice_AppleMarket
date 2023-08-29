@@ -1,7 +1,9 @@
 package com.example.android_practice_applamarket
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_practice_applamarket.data.Product
 import com.example.android_practice_applamarket.databinding.ActivityMainBinding
@@ -82,5 +84,23 @@ class MainActivity : AppCompatActivity() {
 
         binding.mainRecyclerView.adapter = productAdapter
         binding.mainRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
+
+    override fun onBackPressed() {
+        var builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.finish_dialog_title)
+        builder.setMessage(R.string.finish_dialog_message)
+
+        val listener = DialogInterface.OnClickListener { _, p1 ->
+            when(p1) {
+                DialogInterface.BUTTON_POSITIVE ->
+                    finish()
+            }
+        }
+        builder.setPositiveButton(R.string.finish_dialog_positive_button, listener)
+        builder.setNegativeButton(R.string.finish_dialog_negative_button,listener)
+
+        builder.show()
+
     }
 }

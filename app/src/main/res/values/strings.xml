@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Android_Practice_ApplaMarket</string>
+
+    <!--어플리케이션 종료 Dialog-->
+    <string name="finish_dialog_positive_button">종료</string>
+    <string name="finish_dialog_negative_button">취소</string>
+    <string name="finish_dialog_title">종료</string>
+    <string name="finish_dialog_message">종료 하시겠습니까</string>
+
 </resources>
