@@ -37,6 +37,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>(){
             itemImage.setImageResource(item.source)
             itemReplyNum.text = item.reply.toString()
             itemHeartNum.text = item.like.toString()
+            itemImage.clipToOutline = true
         }
     }
 }
