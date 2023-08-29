@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         binding.mainRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         var builder = AlertDialog.Builder(this)
         builder.setTitle(R.string.finish_dialog_title)

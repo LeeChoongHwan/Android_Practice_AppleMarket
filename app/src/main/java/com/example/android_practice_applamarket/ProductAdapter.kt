@@ -1,5 +1,6 @@
 package com.example.android_practice_applamarket
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>(){
     class ViewHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
 
         private val decimalFormat = DecimalFormat("#,###")
+        @SuppressLint("SetTextI18n")
         fun bind(item : Product) = with(binding) {
             itemName.text = item.name
             itemLocation.text = item.location
