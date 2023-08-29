@@ -9,7 +9,7 @@ data class Product(
     val name : String,
     val description : String,
     val owner : String,
-    val price : Int,
+    val price : String,
     val location : String,
     val like : Int,
     val reply : Int
