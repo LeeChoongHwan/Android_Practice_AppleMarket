@@ -8,9 +8,11 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NotificationCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.android_practice_applamarket.data.Product
 import com.example.android_practice_applamarket.databinding.ActivityMainBinding
 
@@ -36,6 +38,20 @@ class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickL
         binding.mainAlarmIcon.setOnClickListener {
             notification()
         }
+
+        binding.mainRecyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (!binding.mainRecyclerView.canScrollVertically(-1)
+                    && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    binding.floatingButton.visibility = View.GONE
+                } else {
+                        binding.floatingButton.visibility = View.VISIBLE
+                }
+            }
+        })
+
+
 
         binding.floatingButton.setOnClickListener {
             binding.mainRecyclerView.smoothScrollToPosition(0)
