@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickL
         )
         itemList.add(
             Product(R.drawable.sample6, "프라다 복조리백",
-                "까임 오염없고 상태 깨끗합니다\\n정품여부모름",
+                "까임 오염없고 상태 깨끗합니다\n정품여부모름",
                 "미니멀하게", 50000, "수원시 영통구 원천동", 25,16)
         )
         itemList.add(
@@ -69,8 +69,8 @@ class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickL
         )
         itemList.add(
             Product(R.drawable.sample8, "샤넬 탑핸들 가방",
-                "샤넬 트랜디 CC 탑핸들 스몰 램스킨 블랙 금장 플랩백 !\n + \"\n\" + \"색상 : 블랙\n\" + \"사이즈 : 25.5cm * 17.5cm * 8cm\n\" + " +
-                        "\"구성 : 본품더스트\n\" + \"\n\" + \"급하게 돈이 필요해서 팝니다 ㅠ ㅠ",
+                "샤넬 트랜디 CC 탑핸들 스몰 램스킨 블랙 금장 플랩백 !\n색상 : 블랙\n사이즈 : 25.5cm * 17.5cm * 8cm\n" +
+                        "구성 : 본품더스트\n급하게 돈이 필요해서 팝니다 ㅠㅠ",
                 "난쉽", 180000, "동래구 온천제2동", 31,7)
         )
         itemList.add(
@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickL
         )
         itemList.add(
             Product(R.drawable.sample10, "셀린느 버킷 가방",
-                "22년 신세계 대전 구매입니당\n + \"셀린느 버킷백\n\" + \"구매해서 몇번사용했어요\n\" + \"까짐 스크래치 없습니다.\n\" + \"타지역에서 보내는거라 택배로 진행합니당!\"",
+                "22년 신세계 대전 구매입니당\n셀린느 버킷백\n구매해서 몇번사용했어요\n까짐 스크래치 없습니다.\n타지역에서 보내는거라 택배로 진행합니당!",
                 "똑태현", 190000, "중구 동화동", 40,6)
         )
 

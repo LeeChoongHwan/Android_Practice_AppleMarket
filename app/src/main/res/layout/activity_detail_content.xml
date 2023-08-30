@@ -104,6 +104,7 @@
                 android:textSize="16sp"
                 android:text="설명설명설명설명"
                 android:paddingHorizontal="20dp"
+                android:paddingBottom="20dp"
                 />
 
 
