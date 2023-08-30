@@ -1,9 +1,19 @@
 package com.example.android_practice_applamarket
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.DialogInterface
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.media.AudioAttributes
+import android.media.RingtoneManager
+import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.NotificationCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_practice_applamarket.data.Product
 import com.example.android_practice_applamarket.databinding.ActivityMainBinding
@@ -18,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
         initView()
     }
-
     private fun initView() {
         val itemList = ArrayList<Product>()
         itemList.add(
@@ -84,6 +93,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.mainRecyclerView.adapter = productAdapter
         binding.mainRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        binding.mainAlarmIcon.setOnClickListener {
+            notification()
+        }
     }
 
     @Deprecated("Deprecated in Java")
@@ -104,4 +117,42 @@ class MainActivity : AppCompatActivity() {
         builder.show()
 
     }
+
+    private fun notification() {
+        val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+        val builder: NotificationCompat.Builder
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val channelId="one-channel"
+            val channelName="My Channel One"
+            val channel = NotificationChannel(
+                channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                description = "My Channel One Description"
+                setShowBadge(true)
+                enableVibration(true)
+            }
+            manager.createNotificationChannel(channel)
+
+            builder = NotificationCompat.Builder(this, channelId)
+
+        }else {
+            builder = NotificationCompat.Builder(this)
+        }
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+        // 알림의 기본 정보
+        builder.run {
+            setSmallIcon(R.mipmap.ic_launcher)
+            setWhen(System.currentTimeMillis())
+            setContentTitle("Apple Market")
+            setContentText("Apple Market에서 알려드립니다.")
+            addAction(R.mipmap.ic_launcher, "Action", pendingIntent)
+        }
+        manager.notify(11, builder.build())
+    }
+
 }

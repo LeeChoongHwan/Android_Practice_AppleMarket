@@ -2,7 +2,6 @@ package com.example.android_practice_applamarket.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-
 @Parcelize
 data class Product(
     val source : Int,
