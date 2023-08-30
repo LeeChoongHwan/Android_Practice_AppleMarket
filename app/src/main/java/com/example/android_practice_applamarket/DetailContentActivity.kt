@@ -9,7 +9,6 @@ import java.text.DecimalFormat
 
 class DetailContentActivity : AppCompatActivity() {
 
-
     lateinit var binding : ActivityDetailContentBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,22 +17,26 @@ class DetailContentActivity : AppCompatActivity() {
 
         val productData : Product? = intent.getParcelableExtra("product")
 
-        initView(productData)
+        setData(productData)
+        initView()
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun initView(productData: Product?) {
+    private fun initView() {
         binding.backButton.setOnClickListener {
             finish()
         }
+    }
 
+    // Intent로 받은 데이터로 Text 설정
+    @SuppressLint("SetTextI18n")
+    private fun setData(productData: Product?) {
         val decimalFormat = DecimalFormat("#,###")
 
-        productData?.let {binding.productImage.setImageResource(it.source)}
+        productData?.let {binding.productImage.setImageResource(it.imageResource)}
         binding.profileName.text = productData?.owner
         binding.profileLocation.text = productData?.location
-        binding.itemTitle.text = productData?.name
+        binding.itemTitle.text = productData?.productName
         binding.itemContent.text = productData?.description
-        binding.priceText.text = decimalFormat.format(productData?.price) + "원"
+        binding.priceText.text = decimalFormat.format(productData?.price) + R.string.unit_of_amount
     }
 }

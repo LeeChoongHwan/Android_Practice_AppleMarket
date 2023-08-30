@@ -4,12 +4,12 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Product(
-    val source : Int,
-    val name : String,
+    val imageResource : Int,
+    val productName : String,
     val description : String,
     val owner : String,
     val price : Int,
     val location : String,
     val like : Int,
-    val reply : Int
+    val chatting : Int
 ) : Parcelable

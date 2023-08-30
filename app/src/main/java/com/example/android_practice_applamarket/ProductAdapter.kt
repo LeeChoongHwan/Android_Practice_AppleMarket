@@ -43,11 +43,11 @@ class ProductAdapter(private val itemClickListener: ViewHolder.OnItemClickListen
         private val decimalFormat = DecimalFormat("#,###")
         @SuppressLint("SetTextI18n")
         fun bind(item : Product) = with(binding) {
-            itemName.text = item.name
+            itemName.text = item.productName
             itemLocation.text = item.location
-            itemPrice.text = decimalFormat.format(item.price) + "원"
-            itemImage.setImageResource(item.source)
-            itemReplyNum.text = item.reply.toString()
+            itemPrice.text = decimalFormat.format(item.price) + R.string.unit_of_amount
+            itemImage.setImageResource(item.imageResource)
+            itemReplyNum.text = item.chatting.toString()
             itemHeartNum.text = item.like.toString()
             itemImage.clipToOutline = true
         }

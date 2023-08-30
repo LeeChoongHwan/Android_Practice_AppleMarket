@@ -16,16 +16,34 @@ import com.example.android_practice_applamarket.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickListener {
 
-    lateinit var  binding : ActivityMainBinding
+    private val itemList = ArrayList<Product>()
+    lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        addData()
         initView()
     }
     private fun initView() {
-        val itemList = ArrayList<Product>()
+        //RecyclerView
+        val productAdapter = ProductAdapter(this)
+        productAdapter.addItems(itemList)
+        binding.mainRecyclerView.adapter = productAdapter
+        binding.mainRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        binding.mainAlarmIcon.setOnClickListener {
+            notification()
+        }
+
+        binding.floatingButton.setOnClickListener {
+            binding.mainRecyclerView.smoothScrollToPosition(0)
+        }
+    }
+
+    //리스트에 데이터 추가
+    private fun addData() {
         itemList.add(
             Product(R.drawable.sample1, "산지 한달 된 선풍기 팝니다",
                 "이사가서 필요가 없어졌어요 급하게 내놓습니다",
@@ -83,18 +101,9 @@ class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickL
                 "22년 신세계 대전 구매입니당\n셀린느 버킷백\n구매해서 몇번사용했어요\n까짐 스크래치 없습니다.\n타지역에서 보내는거라 택배로 진행합니당!",
                 "똑태현", 190000, "중구 동화동", 40,6)
         )
-
-        val productAdapter = ProductAdapter(this)
-        productAdapter.addItems(itemList)
-
-        binding.mainRecyclerView.adapter = productAdapter
-        binding.mainRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
-        binding.mainAlarmIcon.setOnClickListener {
-            notification()
-        }
     }
 
+    //뒤로가기 버튼 클릭 시
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         var builder = AlertDialog.Builder(this)
@@ -114,6 +123,7 @@ class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickL
 
     }
 
+    //알림 기능
     private fun notification() {
         val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
@@ -140,7 +150,6 @@ class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickL
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-        // 알림의 기본 정보
         builder.run {
             setSmallIcon(R.mipmap.ic_launcher)
             setWhen(System.currentTimeMillis())
@@ -150,10 +159,13 @@ class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickL
         }
         manager.notify(11, builder.build())
     }
+
+    //RecyclerView 아이템 클릭
     override fun onItemClick(product: Product) {
         val intent = Intent(this, DetailContentActivity::class.java)
         intent.putExtra("product", product)
         startActivity(intent)
     }
+
 
 }

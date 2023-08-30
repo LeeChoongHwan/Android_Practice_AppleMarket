@@ -1,11 +1,35 @@
 <resources>
-    <string name="app_name">Android_Practice_ApplaMarket</string>
+    <string name="app_name">Android_Practice_AppleMarket</string>
 
     <!--어플리케이션 종료 Dialog-->
     <string name="finish_dialog_positive_button">종료</string>
     <string name="finish_dialog_negative_button">취소</string>
     <string name="finish_dialog_title">종료</string>
     <string name="finish_dialog_message">종료 하시겠습니까</string>
-    <string name="detail_manner_temp"><u>매너온도</u></string>
+
+    <!--Detail Activity-->
+    <string name="unit_of_amount">원</string>
+
+    <!--Detail Layout-->
+    <string name="detail_content_manner_temp"><u>매너온도</u></string>
+    <string name="detail_content_owner_ex">가나다</string>
+    <string name="detail_content_location_ex">동래구 온천제2동</string>
+    <string name="detail_content_imoticon_ex">🙂</string>
+    <string name="detail_content_temp_ex">36.5℃</string>
+    <string name="detail_content_procut_name_ex">샤넬 탑핸들 가방</string>
+    <string name="detail_content_product_descrtiption_ex">설명설명설명설명</string>
+    <string name="detail_content_price_ex">180,000원</string>
+    <string name="detail_content_chatting_button">채팅하기</string>
+
+    <!--Main Layout-->
+    <string name="main_location_ex">남가좌동</string>
+
+    <!--Item Layout-->
+    <string name="item_product_name_ex">프라다 복조리백</string>
+    <string name="item_product_location_ex">수원시 영통구 원천동</string>
+    <string name="item_product_price_ex">50000</string>
+    <string name="item_product_likenum_ex">20</string>
+    <string name="item_product_reply_num_ex">20</string>
+
 
 </resources>
