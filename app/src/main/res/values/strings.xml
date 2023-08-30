@@ -6,5 +6,6 @@
     <string name="finish_dialog_negative_button">취소</string>
     <string name="finish_dialog_title">종료</string>
     <string name="finish_dialog_message">종료 하시겠습니까</string>
+    <string name="detail_manner_temp"><u>매너온도</u></string>
 
 </resources>
