@@ -8,7 +8,7 @@ import com.example.android_practice_applamarket.data.Product
 import com.example.android_practice_applamarket.databinding.ItemProductBinding
 import java.text.DecimalFormat
 
-class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>(){
+class ProductAdapter(private val itemClickListener: ViewHolder.OnItemClickListener) : RecyclerView.Adapter<ProductAdapter.ViewHolder>(){
 
     private val list = mutableListOf<Product>()
 
@@ -25,6 +25,9 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>(){
     override fun onBindViewHolder(holder: ProductAdapter.ViewHolder, position: Int) {
         val item = list[position]
         holder.bind(item)
+        holder.itemView.setOnClickListener {
+            itemClickListener.onItemClick(item)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -32,6 +35,10 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>(){
     }
 
     class ViewHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        interface OnItemClickListener {
+            fun onItemClick(product: Product)
+        }
 
         private val decimalFormat = DecimalFormat("#,###")
         @SuppressLint("SetTextI18n")

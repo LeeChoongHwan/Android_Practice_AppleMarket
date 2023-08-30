@@ -5,10 +5,6 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.BitmapFactory
-import android.media.AudioAttributes
-import android.media.RingtoneManager
-import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_practice_applamarket.data.Product
 import com.example.android_practice_applamarket.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickListener {
 
     lateinit var  binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,7 +84,7 @@ class MainActivity : AppCompatActivity() {
                 "똑태현", 190000, "중구 동화동", 40,6)
         )
 
-        val productAdapter = ProductAdapter()
+        val productAdapter = ProductAdapter(this)
         productAdapter.addItems(itemList)
 
         binding.mainRecyclerView.adapter = productAdapter
@@ -153,6 +149,11 @@ class MainActivity : AppCompatActivity() {
             addAction(R.mipmap.ic_launcher, "Action", pendingIntent)
         }
         manager.notify(11, builder.build())
+    }
+    override fun onItemClick(product: Product) {
+        val intent = Intent(this, DetailContentActivity::class.java)
+        intent.putExtra("product", product)
+        startActivity(intent)
     }
 
 }
