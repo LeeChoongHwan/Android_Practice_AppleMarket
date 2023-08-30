@@ -37,6 +37,6 @@ class DetailContentActivity : AppCompatActivity() {
         binding.profileLocation.text = productData?.location
         binding.itemTitle.text = productData?.productName
         binding.itemContent.text = productData?.description
-        binding.priceText.text = decimalFormat.format(productData?.price) + R.string.unit_of_amount
+        binding.priceText.text = decimalFormat.format(productData?.price) + "원"
     }
 }

@@ -1,5 +1,6 @@
 package com.example.android_practice_applamarket
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -16,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android_practice_applamarket.data.Product
 import com.example.android_practice_applamarket.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickListener {
+class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickListener,ProductAdapter.ViewHolder.OnItemLongClickListener {
 
     private val itemList = ArrayList<Product>()
     lateinit var binding : ActivityMainBinding
@@ -28,10 +29,11 @@ class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickL
         addData()
         initView()
     }
+
+    private lateinit var productAdapter: ProductAdapter
     private fun initView() {
         //RecyclerView
-        val productAdapter = ProductAdapter(this)
-        productAdapter.addItems(itemList)
+        productAdapter = ProductAdapter(this, this,itemList)
         binding.mainRecyclerView.adapter = productAdapter
         binding.mainRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
@@ -50,8 +52,6 @@ class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickL
                 }
             }
         })
-
-
 
         binding.floatingButton.setOnClickListener {
             binding.mainRecyclerView.smoothScrollToPosition(0)
@@ -181,6 +181,26 @@ class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickL
         val intent = Intent(this, DetailContentActivity::class.java)
         intent.putExtra("product", product)
         startActivity(intent)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onItemLongClick(product: Product, position: Int) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("게시글 삭제")
+        builder.setMessage("해당 내용을 삭제 하시겠습니까?")
+
+        val listener = DialogInterface.OnClickListener { _, p1 ->
+            when (p1) {
+                DialogInterface.BUTTON_POSITIVE -> {
+                    itemList.remove(product)
+                    productAdapter.notifyDataSetChanged()
+                }
+            }
+        }
+        builder.setPositiveButton("확인", listener)
+        builder.setNegativeButton("취소", null)
+
+        builder.show()
     }
 
 

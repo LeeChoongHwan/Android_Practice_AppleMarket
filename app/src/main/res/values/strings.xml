@@ -8,7 +8,6 @@
     <string name="finish_dialog_message">종료 하시겠습니까</string>
 
     <!--Detail Activity-->
-    <string name="unit_of_amount">원</string>
 
     <!--Detail Layout-->
     <string name="detail_content_manner_temp"><u>매너온도</u></string>
