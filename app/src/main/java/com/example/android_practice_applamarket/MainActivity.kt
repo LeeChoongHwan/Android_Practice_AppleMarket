@@ -192,7 +192,7 @@ class MainActivity : AppCompatActivity(), ProductAdapter.ViewHolder.OnItemClickL
         val listener = DialogInterface.OnClickListener { _, p1 ->
             when (p1) {
                 DialogInterface.BUTTON_POSITIVE -> {
-                    itemList.remove(product)
+                    itemList.removeAt(position)
                     productAdapter.notifyDataSetChanged()
                 }
             }
